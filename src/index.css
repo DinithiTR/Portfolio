@@ -1,111 +1,301 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
+/* ============================================================
+   THEME VARIABLES
+   ============================================================ */
+   :root {
+    --bg-primary: #f4f3ef;
+    --bg-secondary: #edecea;
+    --bg-card: #ffffff;
+    --bg-glass: rgba(255,255,255,0.7);
+    --text-primary: #0d0d0d;
+    --text-secondary: #4a4a5a;
+    --text-muted: #8a8a9a;
+    --accent: #00d4ff;
+    --accent-2: #7b2fff;
+    --accent-3: #ff6b35;
+    --border: rgba(0,0,0,0.08);
+    --border-accent: rgba(0,212,255,0.3);
+    --glow: rgba(0,212,255,0.15);
+    --shadow: 0 4px 32px rgba(0,0,0,0.08);
+    --shadow-hover: 0 12px 48px rgba(0,0,0,0.14);
+    --nav-bg: rgba(244,243,239,0.85);
+    --grid-color: rgba(0,0,0,0.04);
+  }
+  
+  [data-theme="dark"] {
+    --bg-primary: #080c14;
+    --bg-secondary: #0d1220;
+    --bg-card: #111827;
+    --bg-glass: rgba(13,18,32,0.8);
+    --text-primary: #e8eaf2;
+    --text-secondary: #9ba3b8;
+    --text-muted: #5a6278;
+    --accent: #00d4ff;
+    --accent-2: #a855f7;
+    --accent-3: #ff6b35;
+    --border: rgba(255,255,255,0.06);
+    --border-accent: rgba(0,212,255,0.25);
+    --glow: rgba(0,212,255,0.08);
+    --shadow: 0 4px 32px rgba(0,0,0,0.5);
+    --shadow-hover: 0 12px 48px rgba(0,212,255,0.12);
+    --nav-bg: rgba(8,12,20,0.9);
+    --grid-color: rgba(255,255,255,0.025);
+  }
+  
+  /* ============================================================
+     RESET & BASE
+     ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  html {
+    scroll-behavior: smooth;
     font-size: 16px;
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+  
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+    line-height: 1.6;
   }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+  
+  /* ============================================================
+     TYPOGRAPHY
+     ============================================================ */
+  h1, h2, h3, h4, h5 {
+    font-family: 'JetBrains', monospace;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
   }
-}
-
-body {
-  margin: 0;
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+  
+  .mono {
+    font-family: 'Space Mono', monospace;
   }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+  
+  /* ============================================================
+     SCROLLBAR
+     ============================================================ */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-primary); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+  
+  /* ============================================================
+     GLOBAL GRID BACKGROUND
+     ============================================================ */
+  .grid-bg {
+    background-image:
+      linear-gradient(var(--grid-color) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
-}
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
-
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-}
+  
+  /* ============================================================
+     SECTIONS
+     ============================================================ */
+  section {
+    padding: 100px 0;
+    position: relative;
+  }
+  
+  .section-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+  
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+  }
+  
+  .section-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+  
+  /* ============================================================
+     CARDS
+     ============================================================ */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--glow), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .card:hover {
+    box-shadow: var(--shadow-hover);
+    border-color: var(--border-accent);
+    transform: translateY(-3px);
+  }
+  
+  .card:hover::before { opacity: 1; }
+  
+  /* ============================================================
+     BUTTONS
+     ============================================================ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-decoration: none;
+    border: none;
+  }
+  
+  .btn-primary {
+    background: var(--accent);
+    color: #080c14;
+    font-weight: 700;
+  }
+  
+  .btn-primary:hover {
+    box-shadow: 0 0 24px var(--glow), 0 0 8px var(--accent);
+    transform: translateY(-2px);
+  }
+  
+  .btn-outline {
+    background: transparent;
+    border: 1px solid var(--border-accent);
+    color: var(--accent);
+  }
+  
+  .btn-outline:hover {
+    background: var(--glow);
+    transform: translateY(-2px);
+  }
+  
+  /* ============================================================
+     ACCENT CHIP
+     ============================================================ */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    background: var(--glow);
+    border: 1px solid var(--border-accent);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  
+  /* ============================================================
+     ACCENT LINE
+     ============================================================ */
+  .accent-line {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .accent-line::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius: 2px;
+  }
+  
+  /* ============================================================
+     ANIMATIONS
+     ============================================================ */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 8px var(--accent); }
+    50% { box-shadow: 0 0 24px var(--accent), 0 0 48px var(--glow); }
+  }
+  
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100vh); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  
+  .anim-fadeup { animation: fadeInUp 0.6s ease forwards; }
+  .anim-fadein { animation: fadeIn 0.6s ease forwards; }
+  
+  /* ============================================================
+     DIVIDER
+     ============================================================ */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
+    margin: 0;
+  }
+  
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width: 768px) {
+    section { padding: 70px 0; }
+    .section-container { padding: 0 20px; }
+  }
+  
