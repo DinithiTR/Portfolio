@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ArrowDown, Mail, Download } from 'lucide-react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import HeroImg from '../assets/dinithi-hero1.png'
 
 const ROLES = [
   'Software Engineer',
@@ -70,129 +71,139 @@ export default function Hero() {
         pointerEvents: 'none',
       }} />
 
-      <div style={{ maxWidth: 1100, width: '100%', margin: '0 auto', paddingTop: 80 }}>
-        {/* Status badge */}
-        <div style={{ marginBottom: 28, animation: 'fadeInUp 0.5s ease forwards', opacity: 0 }}>
-          <span className="chip" style={{ fontSize: '0.75rem' }}>
-            <span style={{
-              width: 7, height: 7, borderRadius: '50%',
-              background: '#22c55e',
-              display: 'inline-block',
-              animation: 'pulse-glow 2s infinite',
-            }} />
-            Available for Opportunities
-          </span>
+      <div className="hero-layout">
+        <div className="hero-image-wrap" style={{ animation: 'fadeInUp 0.6s ease forwards', opacity: 0 }}>
+          <img
+            src={HeroImg}
+            alt="Dinithi Rajapaksha"
+            className="hero-image"
+          />
         </div>
 
-        {/* Main heading */}
-        <div style={{ animation: 'fadeInUp 0.6s 0.1s ease forwards', opacity: 0 }}>
-          <div style={{
-            fontFamily: "'Space Mono', monospace",
-            fontSize: '0.78rem', letterSpacing: '0.18em',
-            color: 'var(--text-muted)', marginBottom: 12,
-            textTransform: 'uppercase',
-          }}>
-            Hello, World. I'm
+        <div className="hero-content">
+          {/* Status badge */}
+          <div style={{ marginBottom: 28, animation: 'fadeInUp 0.5s ease forwards', opacity: 0 }}>
+            <span className="chip" style={{ fontSize: '0.75rem' }}>
+              <span style={{
+                width: 7, height: 7, borderRadius: '50%',
+                background: '#22c55e',
+                display: 'inline-block',
+                animation: 'pulse-glow 2s infinite',
+              }} />
+              Available for Opportunities
+            </span>
           </div>
-          <h2 style={{
-            fontSize: 'clamp(1rem, 4vw, 6.0rem)',
-            fontWeight: 800,
-            lineHeight: 1.0,
-            marginBottom: 16,
-            letterSpacing: '-0.03em',
-          }}>
-            Dinithi Rajapaksha
-          </h2>
-        </div>
 
-        {/* Typewriter role */}
-        <div style={{
-          animation: 'fadeInUp 0.6s 0.2s ease forwards', opacity: 0,
-          marginBottom: 24,
-        }}>
-          <div style={{
-            fontSize: 'clamp(1.3rem, 3vw, 2rem)',
-            color: 'var(--text-secondary)',
-            fontWeight: 300,
-            display: 'flex', alignItems: 'center', gap: 2,
-          }}>
-            <span style={{ color: 'var(--accent)', fontWeight: 600 }}>&gt; </span>
-            <span>{displayed}</span>
-            <span style={{
-              width: 3, height: '1.2em', background: 'var(--accent)',
-              display: 'inline-block', marginLeft: 2,
-              animation: 'blink 1s step-end infinite',
-            }} />
+          {/* Main heading */}
+          <div style={{ animation: 'fadeInUp 0.6s 0.1s ease forwards', opacity: 0 }}>
+            <div style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: '0.78rem', letterSpacing: '0.18em',
+              color: 'var(--text-muted)', marginBottom: 12,
+              textTransform: 'uppercase',
+            }}>
+              Hello, World. I'm
+            </div>
+            <h2 style={{
+              fontSize: 'clamp(2.8rem, 6vw, 6rem)',
+              fontWeight: 800,
+              lineHeight: 1.0,
+              marginBottom: 16,
+              letterSpacing: '-0.03em',
+            }}>
+              Dinithi Rajapaksha
+            </h2>
           </div>
-        </div>
 
-        {/* Description */}
-        <div style={{ animation: 'fadeInUp 0.6s 0.3s ease forwards', opacity: 0, marginBottom: 40 }}>
-          <p style={{
-            fontSize: '1.05rem', color: 'var(--text-secondary)',
-            maxWidth: 520, lineHeight: 1.75,
+          {/* Typewriter role */}
+          <div style={{
+            animation: 'fadeInUp 0.6s 0.2s ease forwards', opacity: 0,
+            marginBottom: 24,
           }}>
-            4th-year Software Engineering undergraduate passionate about building
-            elegant solutions to complex problems. Exploring the intersection of
-            technology, design, and human experience.
-          </p>
-        </div>
+            <div style={{
+              fontSize: 'clamp(1.3rem, 3vw, 2rem)',
+              color: 'var(--text-secondary)',
+              fontWeight: 300,
+              display: 'flex', alignItems: 'center', gap: 2,
+            }}>
+              <span style={{ color: 'var(--accent)', fontWeight: 600 }}>&gt; </span>
+              <span>{displayed}</span>
+              <span style={{
+                width: 3, height: '1.2em', background: 'var(--accent)',
+                display: 'inline-block', marginLeft: 2,
+                animation: 'blink 1s step-end infinite',
+              }} />
+            </div>
+          </div>
 
-        {/* CTA Buttons */}
-        <div style={{
-          animation: 'fadeInUp 0.6s 0.4s ease forwards', opacity: 0,
-          display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 56,
-        }}>
-          <a href="#cv" className="btn btn-primary"
-            onClick={e => { e.preventDefault(); document.getElementById('cv')?.scrollIntoView({ behavior: 'smooth' }) }}>
-            <Download size={16} /> View CV
-          </a>
-          <a href="#contact" className="btn btn-outline"
-            onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}>
-            <Mail size={16} /> Get in Touch
-          </a>
-        </div>
+          {/* Description */}
+          <div style={{ animation: 'fadeInUp 0.6s 0.3s ease forwards', opacity: 0, marginBottom: 40 }}>
+            <p style={{
+              fontSize: '1.05rem', color: 'var(--text-secondary)',
+              maxWidth: 520, lineHeight: 1.75,
+            }}>
+              4th-year Software Engineering undergraduate passionate about building
+              elegant solutions to complex problems. Exploring the intersection of
+              technology, design, and human experience.
+            </p>
+          </div>
 
-        {/* Social links */}
-        <div style={{
-          animation: 'fadeInUp 0.6s 0.5s ease forwards', opacity: 0,
-          display: 'flex', gap: 16, alignItems: 'center',
-        }}>
-          <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.72rem', color: 'var(--text-muted)', letterSpacing: '0.12em' }}>
-            FIND ME ON
-          </span>
-          {[
-            { Icon: FaGithub, href: 'https://github.com', label: 'GitHub' },
-            { Icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
-            { Icon: Mail, href: 'mailto:your@email.com', label: 'Email' },
-          ].map(({ Icon, href, label }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              title={label}
-              style={{
-                width: 40, height: 40, borderRadius: 10,
-                background: 'var(--bg-card)', border: '1px solid var(--border)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'var(--text-secondary)', textDecoration: 'none',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.color = 'var(--accent)'
-                e.currentTarget.style.borderColor = 'var(--border-accent)'
-                e.currentTarget.style.transform = 'translateY(-2px)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.color = 'var(--text-secondary)'
-                e.currentTarget.style.borderColor = 'var(--border)'
-                e.currentTarget.style.transform = 'translateY(0)'
-              }}
-            >
-              <Icon size={17} />
+          {/* CTA Buttons */}
+          <div style={{
+            animation: 'fadeInUp 0.6s 0.4s ease forwards', opacity: 0,
+            display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 56,
+          }}>
+            <a href="#cv" className="btn btn-primary"
+              onClick={e => { e.preventDefault(); document.getElementById('cv')?.scrollIntoView({ behavior: 'smooth' }) }}>
+              <Download size={16} /> View CV
             </a>
-          ))}
+            <a href="#contact" className="btn btn-outline"
+              onClick={e => { e.preventDefault(); document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' }) }}>
+              <Mail size={16} /> Get in Touch
+            </a>
+          </div>
+
+          {/* Social links */}
+          <div style={{
+            animation: 'fadeInUp 0.6s 0.5s ease forwards', opacity: 0,
+            display: 'flex', gap: 16, alignItems: 'center',
+          }}>
+            <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.72rem', color: 'var(--text-muted)', letterSpacing: '0.12em' }}>
+              FIND ME ON
+            </span>
+            {[
+              { Icon: FaGithub, href: 'https://github.com', label: 'GitHub' },
+              { Icon: FaLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+              { Icon: Mail, href: 'mailto:your@email.com', label: 'Email' },
+            ].map(({ Icon, href, label }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={label}
+                style={{
+                  width: 40, height: 40, borderRadius: 10,
+                  background: 'var(--bg-card)', border: '1px solid var(--border)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  color: 'var(--text-secondary)', textDecoration: 'none',
+                  transition: 'all 0.2s ease',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.color = 'var(--accent)'
+                  e.currentTarget.style.borderColor = 'var(--border-accent)'
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.color = 'var(--text-secondary)'
+                  e.currentTarget.style.borderColor = 'var(--border)'
+                  e.currentTarget.style.transform = 'translateY(0)'
+                }}
+              >
+                <Icon size={17} />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
 

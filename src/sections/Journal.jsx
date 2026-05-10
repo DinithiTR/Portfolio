@@ -1,225 +1,180 @@
-import { useState } from 'react'
-import { BookOpen, ChevronDown, ChevronUp, Star, Tag } from 'lucide-react'
+import {
+  BookOpen,
+  BriefcaseBusiness,
+  FileText,
+  Mail,
+  MessageSquareText,
+  Presentation,
+  Sparkles,
+  Target,
+  UserCheck,
+} from 'lucide-react'
 
-const JOURNAL_ENTRIES = [
+const REFLECTIONS = [
   {
-    week: 1,
-    date: 'Week 1 — Feb 3, 2025',
-    title: 'Introduction to Professional Development',
-    summary: 'Explored the importance of professional identity and self-branding in the tech industry.',
-    reflection: `This week introduced us to the concept of professional identity and why it matters more than we typically realise as students. We discussed how our online presence — GitHub, LinkedIn, portfolios — shape how potential employers perceive us before we even enter a room. I found myself reflecting on how little attention I had paid to curating my digital footprint. The key takeaway was that professional development isn't a switch you flip at graduation; it's a continuous, intentional practice.`,
-    keyLearnings: ['Professional identity & personal branding', 'Importance of LinkedIn optimization', 'Digital footprint awareness'],
-    tag: 'Self Branding',
+    title: 'Understanding Professional Responsibility',
+    icon: UserCheck,
     color: '#00d4ff',
+    summary: 'Preporation for the Professional World module changed my view of professionalism from a future requirement into a daily habit.',
+    paragraphs: [
+      'Before this module, I mostly connected professional growth with technical ability. I now understand that responsibility, punctuality, communication, and consistency are equally important in a workplace.',
+      'This made me more aware of small habits such as checking updates, managing deadlines, attending sessions properly, and being prepared. These habits reflect reliability, and reliability is something I need to build before entering the industry.',
+    ],
   },
   {
-    week: 2,
-    date: 'Week 2 — Feb 10, 2025',
-    title: 'CV Writing & Personal Statements',
-    summary: 'Deep dive into crafting a compelling CV and articulating your value proposition.',
-    reflection: `Today's session reshaped how I think about a CV. It's not just a list of experiences — it's a curated narrative. We explored the difference between duties and achievements, and how quantifying impact (e.g., "reduced load time by 40%") is far more compelling than generic descriptions. I completely restructured my CV draft after this session, focusing on outcomes rather than tasks. The personal statement workshop was particularly challenging — condensing who you are into three sentences is deceptively hard.`,
-    keyLearnings: ['Achievement-focused CV writing', 'Quantifying impact with metrics', 'Crafting personal statements'],
-    tag: 'CV & Applications',
+    title: 'Improving Presentation Skills',
+    icon: Presentation,
     color: '#a855f7',
+    summary: 'I learned that a presentation should support communication, not hide weak preparation.',
+    paragraphs: [
+      'I realised that I used to put too much information on slides because I thought it made the work look complete. Now I see that clear slides, simple wording, readable visuals, and confident explanation are more effective.',
+      'This reflection will help me in research presentations, internship discussions, and project demonstrations. I want to focus more on guiding the audience clearly instead of depending on slides to carry the whole message.',
+    ],
   },
   {
-    week: 3,
-    date: 'Week 3 — Feb 17, 2025',
-    title: 'Interview Techniques & Preparation',
-    summary: 'Practical mock interviews and strategies for technical and behavioural rounds.',
-    reflection: `The mock interview exercise was both humbling and enlightening. I realised I'd been underestimating behavioural interviews — I thought technical ability was all that mattered. The STAR method (Situation, Task, Action, Result) gave me a structured framework to organise my experiences into coherent stories. We also covered technical interview strategies, including how to think aloud, which I find genuinely difficult. Practice is the only cure for interview anxiety, and this session made me commit to weekly mock sessions with peers.`,
-    keyLearnings: ['STAR method for behavioural interviews', 'Technical interview thinking aloud strategies', 'Managing interview anxiety'],
-    tag: 'Interview Skills',
+    title: 'Developing Clear Business Writing',
+    icon: MessageSquareText,
     color: '#ff6b35',
+    summary: 'I became more careful about writing in a way that is clear, polite, and purposeful.',
+    paragraphs: [
+      'The module made me think differently about workplace writing. Unlike academic writing, professional writing should get to the point quickly while still sounding respectful.',
+      'I also reflected on my use of digital and AI tools. Even when I use support tools, I am responsible for the final message. I need to proofread, check accuracy, and make sure my writing represents me professionally.',
+    ],
   },
   {
-    week: 4,
-    date: 'Week 4 — Feb 24, 2025',
-    title: 'Networking & Professional Relationships',
-    summary: 'Building authentic professional connections and leveraging networks effectively.',
-    reflection: `Networking always felt transactional and forced to me, but this week reframed it entirely. We explored the idea that genuine networking is about being curious about other people and creating mutual value — not collecting business cards. The session on informational interviews was particularly practical. I reached out to two alumni on LinkedIn this week using the template we practised, and both responded positively. The lesson: people are generally willing to help if you're genuine and specific in your ask.`,
-    keyLearnings: ['Authentic networking principles', 'LinkedIn outreach etiquette', 'Informational interview strategies'],
-    tag: 'Networking',
+    title: 'Learning Professional Email and Memo Etiquette',
+    icon: Mail,
     color: '#22c55e',
+    summary: 'I learned that even a simple message can affect how professional I appear.',
+    paragraphs: [
+      'Email and memo writing made me realise that professional communication is not only about grammar. It is also about clarity, tone, structure, and respect for the reader’s time.',
+      'I now pay more attention to subject lines, recipients, attachments, and the purpose of a message. These small details can prevent confusion and create a better impression when communicating with lecturers, employers, or team members.',
+    ],
   },
   {
-    week: 5,
-    date: 'Week 5 — Mar 3, 2025',
-    title: 'Workplace Dynamics & Professional Ethics',
-    summary: 'Navigating team environments, workplace culture, and ethical responsibilities.',
-    reflection: `This week explored what it actually means to be a professional in a workplace setting — beyond technical skills. We discussed psychological safety in teams, how to disagree constructively, and the ethical responsibilities that come with building software. The case studies on data privacy and AI ethics particularly resonated with me. As engineers, our decisions have real-world consequences, and this module reminded me that technical expertise must be paired with moral judgement. I've started thinking about ethics more deliberately in my project work.`,
-    keyLearnings: ['Team dynamics & psychological safety', 'Constructive disagreement', 'Engineering ethics & responsibility'],
-    tag: 'Workplace Ethics',
+    title: 'Preparing for Interviews and Professional Communication',
+    icon: BriefcaseBusiness,
     color: '#f59e0b',
+    summary: 'I started seeing interviews as a chance to show attitude, preparation, and fit, not only knowledge.',
+    paragraphs: [
+      'I used to think interviews were mainly about answering technical questions. PPW helped me understand that employers also look at communication, confidence, problem-solving, attitude, and whether a candidate can work well with others.',
+      'This pushed me to prepare better examples from my own experiences, especially related to teamwork, learning, and handling challenges. I also became more aware of my online identity, including LinkedIn, GitHub, and my portfolio.',
+    ],
   },
   {
-    week: 6,
-    date: 'Week 6 — Mar 10, 2025',
-    title: 'Career Planning & Goal Setting',
-    summary: 'Structured frameworks for short, medium, and long-term career planning.',
-    reflection: `This week helped me bring structure to something I'd been thinking about vaguely — my career path. Using the SMART goals framework, I mapped out a 5-year plan for the first time. What surprised me was how clarifying this exercise was: once I committed specific targets to paper, the steps to reach them became more obvious. I identified a skills gap in cloud architecture and have since started a free AWS course. The session also discussed pivoting and how careers rarely go in straight lines — which was reassuring and liberating.`,
-    keyLearnings: ['SMART goal framework', '5-year career mapping', 'Identifying and closing skills gaps'],
-    tag: 'Career Planning',
+    title: 'Understanding CV and Career Presentation',
+    icon: Target,
     color: '#00d4ff',
+    summary: 'I now see my CV and portfolio as active career tools, not documents to finish once.',
+    paragraphs: [
+      'I reflected on how quickly an employer may form an impression from a CV or portfolio. A clear structure, relevant projects, and simple formatting can communicate professionalism before an interview even begins.',
+      'This encouraged me to treat my CV, portfolio, and professional profiles as living documents. As I complete projects, gain certificates, and improve skills, I should keep updating them instead of waiting until the last moment.',
+    ],
   },
   {
-    week: 7,
-    date: 'Week 7 — Mar 17, 2025',
-    title: 'Personal Finance & Salary Negotiation',
-    summary: 'Understanding compensation, negotiation tactics, and financial planning as a new graduate.',
-    reflection: `One of the most practically useful sessions so far. We were given data on typical graduate salaries in Sri Lanka and abroad, and then walked through negotiation role-plays. The core message: never accept the first offer without negotiating, and always negotiate with data, not emotion. I found the section on understanding full compensation (benefits, leave, growth opportunities, equity) particularly eye-opening — I'd previously fixated on base salary alone. This changed how I'm approaching my job applications and what questions I'm asking at the end of interviews.`,
-    keyLearnings: ['Salary negotiation tactics', 'Understanding total compensation', 'Graduate market salary benchmarks'],
-    tag: 'Finance',
+    title: 'Strengthening Report Writing Skills',
+    icon: FileText,
     color: '#a855f7',
+    summary: 'I learned to think about reports as tools for decision-making, not just assignments.',
+    paragraphs: [
+      'Report writing helped me understand the importance of structure, relevance, and evidence. In the workplace, reports can support decisions, track progress, and communicate problems clearly.',
+      'This reflection reminded me to avoid unnecessary details and focus on the purpose of the report. I need to write for the audience, keep the tone neutral, and organise information so the reader can understand it quickly.',
+    ],
   },
   {
-    week: 8,
-    date: 'Week 8 — Mar 24, 2025',
-    title: 'Entrepreneurship & Innovation Mindset',
-    summary: 'Cultivating an entrepreneurial mindset regardless of career path.',
-    reflection: `Even if you're not planning to start a company, thinking like an entrepreneur makes you a better employee, collaborator, and innovator. That was the central thesis of this week's session, and I found it genuinely compelling. We discussed intrapreneurship — entrepreneurial thinking within organisations — and explored case studies of engineers who drove innovation from inside corporations. This session reignited my interest in side projects. I brainstormed three app ideas and have started building one as a portfolio project. The lesson: initiative is the rarest and most valued skill.`,
-    keyLearnings: ['Entrepreneurial vs. employee mindset', 'Intrapreneurship in organisations', 'Identifying opportunity through observation'],
-    tag: 'Innovation',
+    title: 'Building a Professional Mindset',
+    icon: Sparkles,
     color: '#ff6b35',
+    summary: 'The main lesson I gained is that professionalism is shown through consistent behaviour.',
+    paragraphs: [
+      'Overall, PPW helped me understand that becoming a software engineer is not only about coding. I also need to communicate clearly, manage time, present ideas, prepare for opportunities, and behave responsibly.',
+      'The module gave me a clearer idea of the kind of graduate I want to become: someone who is technically capable, organised, respectful, confident, and willing to keep improving.',
+    ],
   },
 ]
 
-function JournalCard({ entry, isOpen, onToggle }) {
+const SUMMARY_POINTS = [
+  'Professional responsibility',
+  'Presentation and interview readiness',
+  'Business writing, email, memo, and report skills',
+  'CV, portfolio, LinkedIn, and career development',
+]
+
+function ReflectionBlock({ reflection, index }) {
+  const Icon = reflection.icon
+
   return (
-    <div
-      className="card"
-      style={{
-        cursor: 'pointer',
-        borderColor: isOpen ? 'var(--border-accent)' : 'var(--border)',
-        transition: 'all 0.3s ease',
-      }}
-      onClick={onToggle}
-    >
-      {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: 16 }}>
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: 16, flex: 1 }}>
-          {/* Week number */}
-          <div style={{
-            minWidth: 48, height: 48, borderRadius: 12,
-            background: `${entry.color}18`,
-            border: `1px solid ${entry.color}40`,
-            display: 'flex', flexDirection: 'column',
-            alignItems: 'center', justifyContent: 'center',
-            flexShrink: 0,
-          }}>
-            <span style={{ fontFamily: "'Space Mono', monospace", fontSize: '0.6rem', color: entry.color, letterSpacing: '0.05em' }}>WK</span>
-            <span style={{ fontFamily: "'Syne', sans-serif", fontWeight: 800, fontSize: '1rem', color: entry.color, lineHeight: 1 }}>{entry.week}</span>
-          </div>
-
-          <div style={{ flex: 1 }}>
-            <div style={{
-              fontFamily: "'Space Mono', monospace", fontSize: '0.7rem',
-              color: 'var(--text-muted)', marginBottom: 4, letterSpacing: '0.05em',
-            }}>
-              {entry.date}
-            </div>
-            <h4 style={{ fontSize: '1rem', fontWeight: 700, marginBottom: 6 }}>{entry.title}</h4>
-            <p style={{ fontSize: '0.87rem', color: 'var(--text-secondary)' }}>{entry.summary}</p>
-          </div>
+    <article className="journal-reflection">
+      <div className="journal-reflection__header">
+        <div
+          className="journal-reflection__icon"
+          style={{
+            background: `${reflection.color}18`,
+            borderColor: `${reflection.color}40`,
+            color: reflection.color,
+          }}
+        >
+          <Icon size={20} />
         </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexShrink: 0 }}>
-          <span style={{
-            padding: '3px 10px', borderRadius: 999,
-            background: `${entry.color}15`, border: `1px solid ${entry.color}35`,
-            fontSize: '0.7rem', color: entry.color,
-            fontFamily: "'Space Mono', monospace",
-            display: 'flex', alignItems: 'center', gap: 5,
-            whiteSpace: 'nowrap',
-          }}>
-            <Tag size={10} /> {entry.tag}
-          </span>
-          <div style={{ color: 'var(--text-muted)', flexShrink: 0 }}>
-            {isOpen ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
-          </div>
+        <div>
+          <div className="journal-reflection__index">Reflection {String(index + 1).padStart(2, '0')}</div>
+          <h3>{reflection.title}</h3>
         </div>
       </div>
 
-      {/* Expanded content */}
-      {isOpen && (
-        <div style={{
-          marginTop: 24, paddingTop: 24,
-          borderTop: '1px solid var(--border)',
-          animation: 'fadeInUp 0.3s ease forwards',
-        }}>
-          <div style={{ marginBottom: 20 }}>
-            <div style={{
-              fontFamily: "'Space Mono', monospace", fontSize: '0.68rem',
-              color: 'var(--accent)', letterSpacing: '0.15em',
-              textTransform: 'uppercase', marginBottom: 10,
-            }}>
-              Reflection
-            </div>
-            <p style={{
-              color: 'var(--text-secondary)', lineHeight: 1.85,
-              fontSize: '0.92rem',
-            }}>
-              {entry.reflection}
-            </p>
-          </div>
+      <p className="journal-reflection__summary">{reflection.summary}</p>
 
-          <div>
-            <div style={{
-              fontFamily: "'Space Mono', monospace", fontSize: '0.68rem',
-              color: 'var(--accent)', letterSpacing: '0.15em',
-              textTransform: 'uppercase', marginBottom: 10,
-            }}>
-              Key Learnings
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {entry.keyLearnings.map((learning, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 10 }}>
-                  <Star size={13} style={{ color: entry.color, marginTop: 3, flexShrink: 0 }} />
-                  <span style={{ fontSize: '0.88rem', color: 'var(--text-secondary)' }}>{learning}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+      <div className="journal-reflection__body">
+        {reflection.paragraphs.map((paragraph, paragraphIndex) => (
+          <p key={paragraphIndex}>{paragraph}</p>
+        ))}
+      </div>
+    </article>
   )
 }
 
 export default function Journal() {
-  const [openIdx, setOpenIdx] = useState(null)
-
   return (
     <section id="journal">
       <div className="section-container">
         <div className="section-label">
           <BookOpen size={14} /> Reflective Journal
         </div>
-        <h2 className="section-title">Preparing for the<br /><span className="accent-line">Professional World</span></h2>
-        <p className="section-subtitle" style={{ marginBottom: 48 }}>
-          Weekly reflections from the Preparing for Professional World module — documenting insights,
-          challenges, and growth throughout the semester.
+        <h2 className="section-title">
+        Preporation for the<br /><span className="accent-line"> Professional World</span>
+        </h2>
+        <p className="section-subtitle">
+          A short reflection on how the Preparing for Professional World module changed my thinking,
+          habits, and career preparation as a future software engineer.
         </p>
 
-        {/* Timeline */}
-        <div style={{ position: 'relative' }}>
-          {/* Vertical line */}
-          <div style={{
-            position: 'absolute', left: 23, top: 0, bottom: 0, width: 2,
-            background: 'linear-gradient(180deg, var(--accent), var(--accent-2), transparent)',
-            opacity: 0.3,
-          }} />
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16, paddingLeft: 20 }}>
-            {JOURNAL_ENTRIES.map((entry, i) => (
-              <JournalCard
-                key={entry.week}
-                entry={entry}
-                isOpen={openIdx === i}
-                onToggle={() => setOpenIdx(openIdx === i ? null : i)}
-              />
+        <div className="journal-overview">
+          <div>
+            <span className="chip">Preporation for the Professional World</span>
+            <h3>From technical student to workplace-ready graduate</h3>
+            <p>
+              This journal focuses on personal learning and growth rather than summarising each
+              lecture. It highlights the professional habits I need to continue developing.
+            </p>
+          </div>
+          <div className="journal-overview__points">
+            {SUMMARY_POINTS.map(point => (
+              <div key={point} className="journal-overview__point">
+                <span />
+                {point}
+              </div>
             ))}
           </div>
+        </div>
+
+        <div className="journal-reflections">
+          {REFLECTIONS.map((reflection, index) => (
+            <ReflectionBlock
+              key={reflection.title}
+              reflection={reflection}
+              index={index}
+            />
+          ))}
         </div>
       </div>
     </section>
