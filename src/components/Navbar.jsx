@@ -1,17 +1,21 @@
 import { useState, useEffect } from 'react'
-import { Moon, Sun, Menu, X, Terminal } from 'lucide-react'
+import { Moon, Sun, Menu, X } from 'lucide-react'
 import { useScrollSpy } from '../hooks/useScrollSpy'
 
 const NAV_LINKS = [
+  { label: 'Home', href: '#hero' },
   { label: 'About', href: '#about' },
-  { label: 'Journal', href: '#journal' },
-  { label: 'Career Plan', href: '#career' },
-  { label: 'CV', href: '#cv' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Work', href: '#professional-work' },
+  { label: 'Research', href: '#research' },
+  { label: 'Projects', href: '#university-projects' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Résumé', href: '#resume' },
   { label: 'Certificates', href: '#certificates' },
   { label: 'Contact', href: '#contact' },
 ]
 
-const SECTION_IDS = ['hero', 'about', 'journal', 'career', 'cv', 'certificates', 'contact']
+const SECTION_IDS = NAV_LINKS.map(link => link.href.replace('#', ''))
 
 export default function Navbar({ theme, toggleTheme }) {
   const [scrolled, setScrolled] = useState(false)
@@ -42,10 +46,31 @@ export default function Navbar({ theme, toggleTheme }) {
         padding: '0 32px',
       }}>
         <div style={{
-          maxWidth: 1100, margin: '0 auto',
+          maxWidth: 1200, margin: '0 auto',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           height: 64,
         }}>
+          <a
+            href="#hero"
+            onClick={e => handleNav(e, '#hero')}
+            aria-label="Go to home"
+            style={{
+              width: 38,
+              height: 38,
+              borderRadius: 8,
+              background: 'linear-gradient(135deg, var(--accent), var(--accent-2))',
+              color: '#080c14',
+              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontFamily: "'JetBrains Mono', monospace",
+              fontWeight: 800,
+              flexShrink: 0,
+            }}
+          >
+            DR
+          </a>
 
           {/* Desktop Nav */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}
@@ -59,10 +84,10 @@ export default function Navbar({ theme, toggleTheme }) {
                   href={link.href}
                   onClick={e => handleNav(e, link.href)}
                   style={{
-                    padding: '6px 14px', borderRadius: 6,
+                    padding: '6px 10px', borderRadius: 6,
                     textDecoration: 'none',
                     fontFamily: "'DM Sans', sans-serif",
-                    fontSize: '0.88rem', fontWeight: 500,
+                    fontSize: '0.82rem', fontWeight: 500,
                     color: isActive ? 'var(--accent)' : 'var(--text-secondary)',
                     background: isActive ? 'var(--glow)' : 'transparent',
                     border: isActive ? '1px solid var(--border-accent)' : '1px solid transparent',
@@ -77,7 +102,7 @@ export default function Navbar({ theme, toggleTheme }) {
 
           {/* Controls */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <button onClick={toggleTheme} style={{
+            <button onClick={toggleTheme} aria-label="Toggle color theme" style={{
               width: 38, height: 38, borderRadius: 8,
               background: 'var(--bg-card)', border: '1px solid var(--border)',
               cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -130,9 +155,13 @@ export default function Navbar({ theme, toggleTheme }) {
 
       <style>{`
         @media (max-width: 768px) {
-          .desktop-nav { display: none !important; }
-          .mobile-menu-btn { display: flex !important; }
-        }
+              .desktop-nav { display: none !important; }
+              .mobile-menu-btn { display: flex !important; }
+            }
+            @media (max-width: 1120px) {
+              .desktop-nav { display: none !important; }
+              .mobile-menu-btn { display: flex !important; }
+            }
       `}</style>
     </>
   )

@@ -3,9 +3,12 @@ import Navbar       from './components/Navbar'
 import Footer       from './components/Footer'
 import Hero         from './sections/Hero'
 import About        from './sections/About'
-import Journal      from './sections/Journal'
-import Career       from './sections/Career'
-import CV           from './sections/CV'
+import Experience   from './sections/Experience'
+import ProfessionalWork from './sections/ProfessionalWork'
+import Research     from './sections/Research'
+import UniversityProjects from './sections/UniversityProjects'
+import Skills       from './sections/Skills'
+import Resume       from './sections/Resume'
 import Certificates from './sections/Certificates'
 import Contact      from './sections/Contact'
 
@@ -26,11 +29,17 @@ export default function App() {
         <Divider />
         <About />
         <Divider />
-        <Journal />
+        <Experience />
         <Divider />
-        <Career />
+        <ProfessionalWork />
         <Divider />
-        <CV />
+        <Research />
+        <Divider />
+        <UniversityProjects />
+        <Divider />
+        <Skills />
+        <Divider />
+        <Resume />
         <Divider />
         <Certificates />
         <Divider />
